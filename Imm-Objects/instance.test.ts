@@ -47,5 +47,8 @@ test('upgrade laptop up to quantum laptop', () => {
         expect(user.laptop.model).toBe('Mega laptop')
         expect(userWithNewLaptop.laptop.model).toBe('Quantum laptop')
         expect(user.laptop.model).toBe('Mega laptop')
+        expect(user.name).toBe(userWithNewLaptop.name)
+        expect(userWithNewLaptop).not.toBe(user)
+        expect(userWithNewLaptop.laptop.model).not.toBe(user.laptop.model)
     }
 )
