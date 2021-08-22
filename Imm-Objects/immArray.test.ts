@@ -57,3 +57,50 @@ test('change book', () => {
     }
 )
 
+test('remove book', () => {
+        let user: UserWithLapTopType & userWithBooks = {
+            name: 'Diamond',
+            hair: 34,
+            address: {title: 'Minsk'},
+            laptop: {model: 'Mega laptop'},
+            books: ['Refactoring', 'React in action', 'Virtual insanity']
+        }
+
+        const userWithRemovedBook = removeBook(user, `Virtual insanity`,);
+
+        expect(userWithRemovedBook.books.length).toBe(2)
+        expect(userWithRemovedBook.books.length).not.toBe(user.books.length)
+    }
+)
+
+test('add company name test', () => {
+        let user: UserWithLapTopType & userCompaniesType = {
+            name: 'Diamond',
+            hair: 34,
+            address: {title: 'Minsk'},
+            laptop: {model: 'Mega laptop'},
+            companies: [{id: 1, title: 'Regular soft'}, {id: 2, title: 'Majestic solutions'},]
+        }
+
+        const userWithUpdatedCompanies = addCompany(user, {id: 3, title: 'Deep space soft'})
+
+        expect(userWithUpdatedCompanies.companies.length).toBe(3)
+        expect(userWithUpdatedCompanies.companies[2].title).toBe('Deep space soft')
+    }
+)
+
+test('update company name test', () => {
+        let user: UserWithLapTopType & userCompaniesType = {
+            name: 'Diamond',
+            hair: 34,
+            address: {title: 'Minsk'},
+            laptop: {model: 'Mega laptop'},
+            companies: [{id: 1, title: 'Regular soft'}, {id: 2, title: 'Majestic solutions'},]
+        }
+
+        const userWithUpdatedCompanyName = updateCompanyTitle(user, 1, 'Stunning software')
+
+        expect(userWithUpdatedCompanyName.companies[0].title).toBe('Stunning software')
+        expect(userWithUpdatedCompanyName.companies[1].title).toBe('Majestic solutions')
+    }
+)
