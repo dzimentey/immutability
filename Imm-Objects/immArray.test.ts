@@ -1,5 +1,13 @@
 import {UserWithLapTopType} from "./instance";
-import {addBook, addBooksArray, changeBook, userWithBooks} from "./immArray";
+import {
+    addBook,
+    addBooksArray,
+    addCompany,
+    changeBook,
+    removeBook, updateCompany, updateCompanyTitle,
+    userCompaniesType,
+    userWithBooks
+} from "./immArray";
 
 test('increase number of books', () => {
         let user: UserWithLapTopType & userWithBooks = {
@@ -102,5 +110,20 @@ test('update company name test', () => {
 
         expect(userWithUpdatedCompanyName.companies[0].title).toBe('Stunning software')
         expect(userWithUpdatedCompanyName.companies[1].title).toBe('Majestic solutions')
+    }
+)
+
+test('update private company test', () => {
+
+        let companies = {
+            'Diamond': [{id: 1, title: 'Regular soft'}, {id: 2, title: 'Majestic solutions'},],
+            'Kelly': [{id: 3, title: 'Special soft'}, {id: 4, title: 'Future software'},],
+        }
+
+        const newCompanies = updateCompany(companies, "Diamond", 1, 'SuperNova soft')
+
+        expect(newCompanies['Diamond'][0].title).toBe('SuperNova soft')
+        expect(newCompanies['Kelly']).toBe(companies.Kelly)
+        expect(newCompanies).not.toBe(companies)
     }
 )
